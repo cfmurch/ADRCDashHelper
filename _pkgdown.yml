@@ -1,0 +1,13 @@
+url: https://cfmurch.github.io/ADRCDashHelper
+
+authors:
+  Chad Murchison:
+    href: https://github.com/cfmurch/
+  Joseph Marlo:
+    href: https://github.com/joemarlo/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#144B39"
