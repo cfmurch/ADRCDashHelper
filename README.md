@@ -4,6 +4,14 @@ Functions to be used within the ADRC Dashboards:
 - [ADRC Dashboard](https://github.com/cfmurch/ADRCDash)  
 - [ADRC Dasboard Public](https://github.com/cfmurch/ADRCDashPublic). 
 
+## Installation
+
+Within R:
+
+```
+devtools::install_github('cfmurch/ADRCDashHelper')
+```
+
 ## TODO 
 - Move code over  
 - Write tests 
