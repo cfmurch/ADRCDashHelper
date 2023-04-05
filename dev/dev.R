@@ -14,8 +14,8 @@ usethis::use_package('tidyr', min_version = '1.3.0')
 usethis::use_package('lubridate', min_version = '1.9.1')
 usethis::use_package('glue', min_version = '1.6.2')
 usethis::use_package('cli', min_version = '3.6.0')
+usethis::use_package('scales', min_version = '1.2.1')
 usethis::use_package('testthat', min_version = '3.1.6', type = 'Suggests')
-usethis::use_data_table()
 
 # create function files
 usethis::use_r('utils')
@@ -40,5 +40,6 @@ usethis::use_pkgdown()
 
 # build package
 usethis::use_build_ignore('dev')
+usethis::use_build_ignore('.github')
 devtools::check()
 devtools::build()
