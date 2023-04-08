@@ -1,4 +1,7 @@
 
+
+# UI ----------------------------------------------------------------------
+
 #' Color palette
 #'
 #' UAB color palette. Primarily used for static UI elements.
@@ -83,7 +86,7 @@ add_beta_ribbon <- function(){
 #' observe(if(isTRUE(shinybrowser::is_device_mobile())) ADRCDashHelper::show_popup_mobile(session))
 #' }
 show_popup_mobile <- function(session = shiny::getDefaultReactiveDomain()){
-  content <- HTML("<strong>ADRC Dash</strong> is best experienced on a big screen! Please come back on a desktop browser.")
+  content <- htmltools::HTML("<strong>ADRC Dash</strong> is best experienced on a big screen! Please come back on a desktop browser.")
   popup <- shiny::modalDialog(
     content,
     title = NULL,
@@ -93,4 +96,58 @@ show_popup_mobile <- function(session = shiny::getDefaultReactiveDomain()){
     fade = TRUE
   )
   shiny::showModal(ui = popup, session = session)
+}
+
+
+# other -------------------------------------------------------------------
+
+#' Check if a value is truthy
+#'
+#' A value is truthy unless it is FALSE, NA, NULL, an empty data.frame, or empty list.
+#'
+#' Modified from shiny::isTruthy
+#'
+#' @param x An expression whose truthiness value we want to determine
+#'
+#' @return boolean
+#' @export
+#'
+#' @author Joseph Marlo, \email{support@landeranalytics.com}
+#' @seealso [shiny::isTruthy()]
+#'
+#' @examples
+#' is_truthy(TRUE)
+#' is_truthy(FALSE)
+#' is_truthy(1)
+#' is_truthy(0)
+#' is_truthy(NULL)
+#' is_truthy(NA)
+#' is_truthy(data.frame())
+#' is_truthy(data.frame(x = 1))
+is_truthy <- function(x){
+
+  ##### additions
+  if (inherits(x, "data.frame") && nrow(x) == 0)
+    return(FALSE)
+  if (inherits(x, "list") && length(x) == 0)
+    return(FALSE)
+
+  ##### shiny::isTruthy
+  if (inherits(x, "try-error"))
+    return(FALSE)
+  if (!is.atomic(x))
+    return(TRUE)
+  if (is.null(x))
+    return(FALSE)
+  if (length(x) == 0)
+    return(FALSE)
+  if (all(is.na(x)))
+    return(FALSE)
+  if (is.character(x) && !any(nzchar(stats::na.omit(x))))
+    return(FALSE)
+  if (inherits(x, "shinyActionButtonValue") && x == 0)
+    return(FALSE)
+  if (is.logical(x) && !any(stats::na.omit(x)))
+    return(FALSE)
+  return(TRUE)
 }

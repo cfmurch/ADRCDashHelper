@@ -2,6 +2,7 @@
 
 export(add_beta_ribbon)
 export(color_palette)
+export(is_truthy)
 export(show_popup_mobile)
 importFrom(data.table,":=")
 importFrom(data.table,.BY)
