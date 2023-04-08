@@ -72,13 +72,13 @@ add_beta_ribbon <- function(){
 #'
 #' To be used within Shiny server
 #'
-#' @param session
+#' @param session A Shiny session object
 #'
 #' @author Joseph Marlo, \email{support@landeranalytics.com}
-#' @noRd
+#' @export
 #'
 #' @return called for side effect
-#' @example
+#' @examples
 #' \dontrun{
 #' observe(if(isTRUE(shinybrowser::is_device_mobile())) ADRCDashHelper::show_popup_mobile(session))
 #' }

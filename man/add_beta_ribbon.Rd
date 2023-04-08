@@ -10,7 +10,7 @@ add_beta_ribbon()
 html
 }
 \description{
-To be used withi Shiny UI
+To be used within Shiny UI
 }
 \examples{
 htmltools::html_print(add_beta_ribbon())
