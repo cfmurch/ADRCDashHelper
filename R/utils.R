@@ -26,7 +26,7 @@ color_palette <- list(
 
 #' Add red "beta" ribbon to the bottom left of the UI
 #'
-#' To be used withi Shiny UI
+#' To be used within Shiny UI
 #'
 #' @export
 #' @return html
@@ -65,4 +65,32 @@ add_beta_ribbon <- function(){
   )
 
   return(beta_div)
+}
+
+
+#' Show warning popup if user is on mobile
+#'
+#' To be used within Shiny server
+#'
+#' @param session
+#'
+#' @author Joseph Marlo, \email{support@landeranalytics.com}
+#' @noRd
+#'
+#' @return called for side effect
+#' @example
+#' \dontrun{
+#' observe(if(isTRUE(shinybrowser::is_device_mobile())) ADRCDashHelper::show_popup_mobile(session))
+#' }
+show_popup_mobile <- function(session = shiny::getDefaultReactiveDomain()){
+  content <- HTML("<strong>ADRC Dash</strong> is best experienced on a big screen! Please come back on a desktop browser.")
+  popup <- shiny::modalDialog(
+    content,
+    title = NULL,
+    footer = shiny::modalButton("I'll check it out anyway"),
+    size = 's',
+    easyClose = FALSE,
+    fade = TRUE
+  )
+  shiny::showModal(ui = popup, session = session)
 }
