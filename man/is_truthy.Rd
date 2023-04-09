@@ -13,7 +13,7 @@ is_truthy(x)
 boolean
 }
 \description{
-A value is truthy unless it is FALSE, NA, NULL, an empty data.frame, or empty list.
+A value is generally truthy unless it is FALSE, NA, NULL, an empty data.frame, or empty list.
 }
 \details{
 Modified from shiny::isTruthy

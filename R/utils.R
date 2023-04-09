@@ -23,6 +23,7 @@ color_palette <- list(
   yellow = "#FFD602",
   gold = "#A69363",
   grey = "#808285",
+  grey_light = "#c7c7c7",
   grey_dark = "#2d3338"
 )
 
@@ -103,7 +104,7 @@ show_popup_mobile <- function(session = shiny::getDefaultReactiveDomain()){
 
 #' Check if a value is truthy
 #'
-#' A value is truthy unless it is FALSE, NA, NULL, an empty data.frame, or empty list.
+#' A value is generally truthy unless it is FALSE, NA, NULL, an empty data.frame, or empty list.
 #'
 #' Modified from shiny::isTruthy
 #'
