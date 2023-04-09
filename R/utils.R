@@ -17,6 +17,7 @@
 #' scales::show_col(unlist(color_palette))
 color_palette <- list(
   green = "#88C408",
+  green_light = "#a5e6cd",
   green_medium = '#007348',
   green_dark = "#144B39",
   green_dark_dark = "#152e24",
