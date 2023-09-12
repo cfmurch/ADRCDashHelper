@@ -88,7 +88,10 @@ add_beta_ribbon <- function(){
 #' observe(if(isTRUE(shinybrowser::is_device_mobile())) ADRCDashHelper::show_popup_mobile(session))
 #' }
 show_popup_mobile <- function(session = shiny::getDefaultReactiveDomain()){
-  content <- htmltools::HTML("<strong>ADRC Dash</strong> is best experienced on a big screen! Please come back on a desktop browser.")
+  content <- htmltools::p(
+    htmltools::strong("ADRC Dash"),
+    " is best experienced on a big screen! Please come back on a desktop browser."
+  )
   popup <- shiny::modalDialog(
     content,
     title = NULL,

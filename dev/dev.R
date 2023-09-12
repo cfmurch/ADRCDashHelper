@@ -6,7 +6,11 @@ usethis::create_package('ADRCDashHelper')
 usethis::git_vaccinate()
 
 # imports
+usethis::use_package("shiny", min_version = '1.7.4')
 usethis::use_package("htmltools", min_version = '0.5.4')
+usethis::use_package('shinyWidgets', min_version = '0.7.6')
+usethis::use_package('reactable', min_version = '0.4.4')
+usethis::use_package('echarts4r', min_version = '0.4.5')
 usethis::use_package("data.table", min_version = '1.14.6')
 usethis::use_data_table()
 usethis::use_package('dplyr', min_version = '1.1.0')
@@ -18,10 +22,13 @@ usethis::use_package('scales', min_version = '1.2.1')
 usethis::use_package('testthat', min_version = '3.1.6', type = 'Suggests')
 
 # create function files
+# usethis::use_r('modules')
+usethis::use_r('data')
 usethis::use_r('utils')
 
 # create tests
 usethis::use_testthat()
+usethis::use_test('data')
 usethis::use_test('utils')
 
 # other
@@ -37,6 +44,9 @@ usethis::use_pkgdown()
 # testing
 # devtools::load_all()
 # devtools::document()
+
+# R CMD check on GitHub Actions
+usethis::use_github_action_check_standard()
 
 # build package
 usethis::use_build_ignore('dev')
