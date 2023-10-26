@@ -206,7 +206,7 @@ footer > a:hover{
 .ReactTable {
   padding: 1em;
   border-radius: 0.25em;
-  font-size: 0.85em;
+  font-size: 0.95em;
 }
 .card-body .ReactTable {
   padding: 0;
