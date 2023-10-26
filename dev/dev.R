@@ -19,6 +19,8 @@ usethis::use_package('lubridate', min_version = '1.9.1')
 usethis::use_package('glue', min_version = '1.6.2')
 usethis::use_package('cli', min_version = '3.6.0')
 usethis::use_package('scales', min_version = '1.2.1')
+usethis::use_package('fresh', min_version = '0.2.0')
+usethis::use_package('xfun')
 usethis::use_package('testthat', min_version = '3.1.6', type = 'Suggests')
 
 # create function files

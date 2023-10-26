@@ -72,6 +72,189 @@ add_beta_ribbon <- function(){
   return(beta_div)
 }
 
+#' @title Establish the UAB theme for bs4Dash
+#'
+#' @description Creates a base UAB theme. It writes out a CSS style sheet to the /www directory. This should be used in the R console when starting a new dashboard project.
+#'
+#' @param output_dir Directory in which to write the style sheet
+#'
+#' @export
+#' @return Creates or overrides a style sheet at `output_dir`
+#' @author Joseph Marlo, \email{support@landeranalytics.com}
+#'
+#' @seealso [fresh::search_vars_bs4dash()]
+#' @seealso [https://dreamrs.github.io/fresh/articles/vars-bs4dash.html](https://dreamrs.github.io/fresh/articles/vars-bs4dash.html)
+#' @examples
+#' \dontrun{
+#' write_uab_bs4_theme()
+#' }
+write_uab_bs4_theme <- function(output_dir = "inst/app/www"){
+
+  output_file <- file.path(output_dir, "ADRC-theme.css")
+
+  # use SCSS bsf4dash variables where possible
+  css_content <- fresh::create_theme(
+    fresh::bs4dash_vars(
+      # sidebar_light_active_color = "#FFF",
+      # sidebar_dark_active_color = "#FFF"
+    ),
+    fresh::bs4dash_yiq(
+    ),
+    fresh::bs4dash_layout(
+      # control_sidebar_width = "600px"
+    ),
+    fresh::bs4dash_sidebar_light(
+      bg = ADRCDashHelper::color_palette$green_dark,
+      submenu_active_bg = ADRCDashHelper::color_palette$green_medium
+    ),
+    fresh::bs4dash_sidebar_dark(
+      bg = ADRCDashHelper::color_palette$green_dark,
+      submenu_active_bg = ADRCDashHelper::color_palette$green_medium,
+    ),
+    fresh::bs4dash_status(
+      # this controls the active nav pill for some reason
+      primary = ADRCDashHelper::color_palette$green_medium,
+      danger = "#BF616A"
+    ),
+    fresh::bs4dash_color(
+    ),
+    fresh::bs4dash_font(
+      weight_normal = 300
+    )
+  )
+
+  # additional CSS that can't be handled by create_theme
+  css_additional <- "
+/* ADDITIONAL CUSTOM CSS */
+/* limit the width of the dashboard on ultrawide monitors */
+.content {
+  max-width: 1400px;
+}
+
+/* main sidebar */
+#sideBarMenu .nav-link {
+  color: #fff !important;
+}
+#sideBarMenu .control-label {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* footer copyright */
+footer {
+  padding: 0.6em !important;
+}
+footer > a{
+  color: #a1a1a1;
+}
+footer > a:hover{
+  filter: brightness(70%);
+  color: #a1a1a1 !important;
+}
+
+/* buttons */
+.button-path {
+  margin-left: 0.5em;
+  background-color: rbga(79, 79, 79, 1) !important;
+  border: rbga(79, 79, 79, 1) !important;
+  color: #fff !important;
+}
+.button-path:hover {
+  filter: brightness(0.8);
+}
+.button-path:active {
+  filter: brightness(0.6);
+}
+
+/* calendar colors */
+.month.active, .day.active {
+  background-color: rbga(79, 79, 79, 1) !important;
+}
+.datepicker .day.active {
+  background-color: rgba(79, 79, 79, 1) !important;
+}
+
+/* selectize item colors and box shadow */
+.item.active {
+  background: rbga(79, 79, 79, 1) !important;
+}
+.selectize-input.focus {
+  box-shadow: 0px 0px 5px rgba(79, 79, 79, 0.8);
+  border-color: rgba(79, 79, 79, 0.8);
+}
+.selectize-dropdown-content > .active {
+  background: #a1a1a1;
+}
+
+/* checkboxes */
+.shiny-input-checkboxgroup > label {
+  margin: 1em 0 1em 0;
+}
+.checkbox span {
+  font-weight: 500;
+}
+
+/* tabs on tabset panels */
+.tabbable > .nav {
+  margin-bottom: 0.25rem !important;
+}
+.tabbable .nav-link.active {
+  border-bottom: 3px solid #007348 !important;
+}
+
+/* reactable */
+.ReactTable {
+  padding: 1em;
+  border-radius: 0.25em;
+  font-size: 0.85em;
+}
+.card-body .ReactTable {
+  padding: 0;
+}
+.reactable {
+  margin: auto; /* centers table */
+}
+
+/* bs4dash cards */
+.card-body {
+  margin-bottom: 1em;
+}
+
+/* dropdown */
+.selected.active {
+  color: #fff !important;
+}
+.dropdown-item:active {
+  color: #fff !important;
+}
+
+/* mobile popup warning */
+.modal-footer > .btn {
+  padding: 0.5rem;
+  border: 2px #007348 solid;
+  background: #007348;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.modal-footer > .btn:active {
+  background: #fff;
+  color: #007348;
+  transition-duration: 100ms;
+}
+  "
+
+  # remove line breaks
+  css_additional <- gsub("\n", "", css_additional)
+
+  # combine the css into one text vector
+  css_content <- paste0(css_content, css_additional)
+
+  xfun::write_utf8(css_content, output_file)
+}
+
 
 #' Show warning popup if user is on mobile
 #'

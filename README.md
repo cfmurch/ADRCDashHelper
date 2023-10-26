@@ -6,7 +6,7 @@
 
 Functions to be used within the ADRC Dashboards:  
 - [ADRC Dashboard](https://github.com/cfmurch/ADRCDash)  
-- [ADRC Dasboard Public](https://github.com/cfmurch/ADRCDashPublic). 
+- [ADRC Dasboard Public](https://github.com/cfmurch/ADRCDashPublic) 
 
 Functions in this package should be general to be used within either dashboard. Good examples are:  
 - Data pipeline  
